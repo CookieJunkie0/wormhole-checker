@@ -1,8 +1,18 @@
 const fs = require('fs');
 
+const NETWORK = "Solana"; // EVM, Solana, Aptos, Sui, Injective
+
+const networks = {
+    "EVM": 2,
+    "Solana": 1,
+    "Aptos": 22,
+    "Sui": 21,
+    "Injective": 19,
+}
+
 async function checkWallet(wallet) {
     try {
-        const result = await fetch(`https://prod-flat-files-min.wormhole.com/${wallet}_1.json`);
+        const result = await fetch(`https://prod-flat-files-min.wormhole.com/${wallet}_${networks[NETWORK]}.json`);
 
         if(!result.ok) {
             return {success: false, err: result}
@@ -15,7 +25,6 @@ async function checkWallet(wallet) {
 }
 
 async function main() {
-    console.log("Wormhole airdrop checker by https://t.me/cookiejunkieeth")
 
     const wallets = fs.readFileSync('./inputs/wallets.txt').toString().split('\n');
     for(i=0;i<wallets.length;i++) {
