@@ -15,6 +15,7 @@ async function checkWallet(wallet) {
 }
 
 async function main() {
+    console.log("Wormhole airdrop checker by https://t.me/cookiejunkieeth")
 
     const wallets = fs.readFileSync('./inputs/wallets.txt').toString().split('\n');
     for(i=0;i<wallets.length;i++) {
