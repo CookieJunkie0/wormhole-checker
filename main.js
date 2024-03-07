@@ -12,7 +12,7 @@ const networks = {
 
 async function checkWallet(wallet) {
     try {
-        const result = await fetch(`https://prod-flat-files-min.wormhole.com/${wallet}_${networks[NETWORK]}.json`);
+        const result = await fetch(`https://prod-flat-files-min.wormhole.com/${wallet.toLowerCase()}_${networks[NETWORK]}.json`);
 
         if(!result.ok) {
             return {success: false, err: result}
